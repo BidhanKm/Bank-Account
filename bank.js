@@ -8,10 +8,10 @@ const password = document.getElementById('password-field')
 const passwordField = password.value;
 
 if (emailField === "bidhan@gmail.com" && passwordField === "bidhan") {
-    console.log('valid user')
+    window.location.href = 'bank.html'
 }
 else{
-    console.log('invalid user')
+    alert('Please input correct information')
 }
 })
 
