@@ -3,6 +3,7 @@ document.getElementById('btn-deposit').addEventListener('click', function () {
     const depositFieldString = depositInputField.value
     const depositField = parseFloat(depositFieldString);
 
+
     const deposit = document.getElementById('total-deposit');
     const totalDepositString = deposit.innerText
     const totalDeposit = parseFloat(totalDepositString);
@@ -31,15 +32,16 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
     const witdhdrawInputfieldString = witdhdrawInputfield.value;
     const withdrawValue = parseFloat(witdhdrawInputfieldString);
 
+    witdhdrawInputfield.value = '';
+
+    if (isNaN(withdrawValue)) {
+        alert('please provide valid number')
+        return;
+    }
 
     const witdhdrawTextField = document.getElementById('total-widthdraw');
     const witdhdrawTextFieldString = witdhdrawTextField.innerText;
     const witdhdrawText = parseFloat(witdhdrawTextFieldString)
-
-
-    const currentWitdhdraw = withdrawValue + witdhdrawText;
-    witdhdrawTextField.innerText = currentWitdhdraw;
-
 
 
     // witdhdraw balance
@@ -48,11 +50,17 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
     const totalBalanceString = balance.innerText;
     const totalBalance = parseFloat(totalBalanceString);
 
+    if (withdrawValue > totalBalance) {
+        alert('insufficient balance')
+        return;
+    }
+
+    const currentWitdhdraw = withdrawValue + witdhdrawText;
+    witdhdrawTextField.innerText = currentWitdhdraw;
+
     const currentTotalWitdhdraw = totalBalance - withdrawValue;
     balance.innerText = currentTotalWitdhdraw;
-
-
-    witdhdrawInputfield.value = '';
+   
 })
 
 
